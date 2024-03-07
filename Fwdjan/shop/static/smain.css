@@ -1,0 +1,86 @@
+button {
+  margin: 0 auto;
+  display: block;
+  color:red;
+  font-size:15px;
+  height:30px
+}
+h2{ color:navy;
+    text-align:center;
+    font-size:35px;
+    background-color:lime;
+  }
+h3{ color: blue;
+    font-size:17px;
+    background-color:yellow;
+  }
+.lis {text-decoration: underline;
+      text-shadow: 3px 5px 6px #6C9;
+      color: red;
+      font-style:italic;
+}
+.rex{ font-size:30px;
+      text-align:center;
+      color:coral;
+      font-style:oblique;
+      font-weight: bold;
+      font-family: Helvetica;
+      background-color:aqua
+}
+.mex{ font-size:20px;
+      text-align:center;
+      color:lime;
+      font-weight: bold;
+      background-color:red;
+}
+.tex{ color:blue;
+    text-align:center;
+    font-size:30px;
+    background-color:yellow;
+    font-style:oblique;
+
+}
+.button {
+      width: 280px;
+      display: inline-block;
+      background: #08C;
+      border: none;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: bold;
+}
+.slim{
+    width: 200%;
+    background-color: #08C;
+    padding: 35px;
+    margin:  35px;
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+table {
+  border: 1px solid grey;
+  text-align:center;
+  width: 100%;
+}
+td {
+   border: 1px solid grey;
+   padding:8px;
+   font-size:17px;
+   background: aqua;
+   color: green;
+   font-weight: bold;
+
+}
+
+th {
+   border: 1px solid grey;
+   padding:10px;
+   font-size:20px;
+   color: white;
+   background: coral;
+   text-align:center;

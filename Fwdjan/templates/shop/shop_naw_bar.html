@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Головна</a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a aria-current="page" class="nav-link active" href="{% url 'new' 1 %}">Категорії
+                    товарів</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item"><a aria-current="page" class="nav-link active" href="{% url 'create' %}">Новий
+                    товар</a></li>
+                {% else %}
+                <h2><a class="lis">знайдено !!!/a></h2>
+                <li class="nav-item"><a aria-current="page" class="nav-link  disabled"
+                                        href="{% url 'create' %}">Новий товар</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <form class="d-flex" id="go_Form" method="get">
+            <select aria-label=".form-select-sm example" class="form-select form-select-sm menu_sell me-2 fw-bold"
+                    id='menn' name="q_3" onchange="toggleInputVisibility()">
+                {% if request.GET.q_3 == "hidden" %}
+                <option value="visible">Пошук за назвою товару</option>
+                <option selected value="hidden">Пошук за ціною товару</option>
+                {% else %}
+                <option selected value="visible">Пошук за назвою товару</option>
+                <option value="hidden">Пошук за ціною товару</option>
+                {% endif %}
+            </select>
+            <input id="q_5_hidden" name="q_5" type="hidden" value="{{request.GET.q_5|default:0}}">
+            <input id="q_6_hidden" name="q_6" type="hidden" value="{{request.GET.q_6|default:5}}">
+            <input aria-label="Search" class="form-control form-control-sm me-2" id="inp_1" name="q_1"
+                   type="text" value="{{request.GET.q_1}}">
+            <label class="form-label me-2" fw-bold id="labb"" style="display:none">-</label>
+            <input aria-label="Search" class="form-control form-control-sm me-2" id="inp_2" name="q_2"
+                   pattern="\d*" style="display:none" title="введіть числові значення !!!"
+                   type="text" value="{{request.GET.q_2}}">
+            <div class="form-check form-switch text-center fw-bold me-2 col-auto">
+                <input class="form-check-input" id="flex_kat" name="q_4" onclick="fuck_check()" type="checkbox"
+                       value="{{request.GET.q_4}}">
+                <label class="form-check-label" for="flex_kat">в категорії</label>
+            </div>
+
+            <script>
+                var checkbox = document.getElementById('flex_kat');
+                if (checkbox.value === 'on') {
+                     checkbox.checked = true;
+                 }
+            </script>
+            {% if request.GET.q_3 == "hidden" %}
+            <script>
+                toggleInputVisibility();
+            </script>
+            {% endif %}
+            <button class="btn btn-outline-primary btn-sm col-auto" name="search_type" type="submit" value="first">
+                Пошук <i class="bi bi-search"></i>
+            </button>
+        </form>
+        <span class="navbar-text ms-2">
+            {% if request.user.is_authenticated %}
+            <a>Користувач:</a>
+            <a href="{% url 'login' %}">{{ user.username}} |</a>
+            <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}">Авторизація</a>
+            {% endif %}
+        </span>
+    </div>
+</nav>

@@ -1,0 +1,30 @@
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="leModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Видалення інформації</h5>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                Ви дійсно бажаєте видалити даний товар ?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" onclick="confirmDelete()" type="button">Так
+                </button>
+                <button class="btn btn-primary" data-bs-dismiss="modal" type="button"> Ні</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var currentItemId;
+    function setItemId(itemId) {
+        currentItemId = itemId;
+    }
+
+    function confirmDelete() {
+        var url = "{% url 'delete' 0 %}".replace("0", currentItemId);
+        window.location.href = url;
+    }
+</script>

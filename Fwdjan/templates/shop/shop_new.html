@@ -1,0 +1,87 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<title>{{ title.1 }}</title>
+{% include 'shop/shop_naw_bar.html' %}
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="list-group">
+                {% for item in nam_kat %}
+                {% if item.0 == title.0 %}
+                <a aria-current="true" class="list-group-item list-group-item-action active"
+                   href="{% url 'new' item.0 %}">{{ item.1 }}</a>
+                {% else %}
+                <a class="list-group-item list-group-item-action" href="{% url 'new' item.0 %}">{{ item.1 }}</a>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div align="center" class="col-6 d-flex">
+                    <label class="col-form-label text-success fw-bold">{{ title.1 }} знайдено {{ goods.paginator.count}}
+                        товарів</label>
+                </div>
+
+                <div class="col-6">
+                    <label class="col-form-label-sm mb-2 me-1 fw-bold " for="sr">Порядок:</label>
+                    <div class="btn-group">
+                        <button aria-expanded="false" class="btn btn-outline-primary btn-sm dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                id="sort_Button" type="button" value="{{request.GET.q_5|default:0}}">
+                            {% if request.GET.q_5 == '0' %}
+                            <i class="bi bi-sort-alpha-down"></i>- за назвою товару
+                            {% elif request.GET.q_5 == '1' %}
+                            <i class="bi-arrow-up"></i>- за цiною зростання
+                            {% elif request.GET.q_5 == '2' %}
+                            <i class="bi-arrow-down"></i>- за цiною спадання
+                            {% elif request.GET.q_5 == '3' %}
+                            <i class="bi-calendar3"></i>- за датою оновлення
+                            {% else %}
+                            <i class="bi bi-sort-alpha-down"></i>- за назвою товару
+
+                            {% endif %}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="sort_Butt(0,'bi-sort-alpha-down')">
+                                <i class="bi bi-sort-alpha-down"></i>- за назвою товару</a></li>
+                            <li><a class="dropdown-item" href="#"
+                                   onclick="sort_Butt(1,'bi-arrow-up')">
+                                <i class="bi-arrow-up"></i>- за цiною зростання</a></li>
+                            <li><a class="dropdown-item" href="#"
+                                   onclick="sort_Butt(2,'bi-arrow-down')">
+                                <i class="bi-arrow-down"></i>- за цiною спадання</a></li>
+                            <li><a class="dropdown-item" href="#"
+                                   onclick="sort_Butt(3,'bi-calendar3')">
+                                <i class="bi-calendar3"></i>- за датою оновлення</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group btn-group-sm ms-2">
+                        <button aria-expanded="false" class="btn btn-outline-primary dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                id="drop_Button"
+                                type="button" value="{{request.GET.q_6|default:5}}">
+                            {% if request.GET.q_6 == "6" %}
+                            <i class="bi-table"></i> Таблиця
+                            {% else %}
+                            <i class="bi-grid-fill"></i> Плитка
+                            {% endif %}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"
+                                   onclick="change_Butt(5, 'bi-grid-fill', ' Плитка')">
+                                <i class="bi-grid-fill"></i> Плитка</a></li>
+                            <li><a class="dropdown-item" href="#"
+                                   onclick="change_Butt(6, 'bi-table',' Таблиця')">
+                                <i class="bi-table"></i> Таблиця</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% include templ_name %}
+        </div>
+    </div>
+    {% include 'shop/paginator.html' %}
+</div>
+{% endblock content %}

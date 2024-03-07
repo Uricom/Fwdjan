@@ -1,0 +1,61 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<title>{{ head }}</title>
+<form action="" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {% comment %}
+    {{ form.as_p }}
+    <label class="form-label text-primary" for="{{ form.good_price.id_for_label }}">Сума</label>
+    {% endcomment %}
+
+    <div class="card card-sm ms-5 me-5 mt-3">
+        <h6 class="card-header text-white bg-primary">{{ head }}</h6>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group input-group-sm">
+                        <label class="form-label text-primary" for="{{ form.good_name.id_for_label }}">Назва
+                            товару </label>
+                        {{ form.good_name }}
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <label class="form-label text-primary">Вартість:</label>
+                        </div>
+                        <div class="col-2">
+                            {{ form.good_price }}
+                        </div>
+                        <div class="col-2">
+                            <label class="form-label text-primary">Категорія:</label>
+                        </div>
+                        <div class="col input-group-sm">
+                            {{ form.good_kat }}
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <label class="form-label text-primary">Посилання:</label>
+                        </div>
+                        <div class="col-4 input-group-sm">
+                            {{ form.good_link }}
+                        </div>
+                        <div class="col-6 input-group-sm">
+                            {{ form.good_image }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group input-group-sm">
+                        <label class="form-label text-primary" for="{{ form.good_opys.id_for_label }}">Детальний опис
+                            товару</label>
+                        {{ form.good_opys }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div align="center" class="col mt-2">
+        <input class="btn-sm btn-outline-danger" type="submit" value="Зберегти відомості про товар">
+    </div>
+</form>
+{% endblock content %}

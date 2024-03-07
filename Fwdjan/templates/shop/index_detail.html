@@ -1,0 +1,59 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+{% load humanize %}
+<title>{{ title }}</title>
+<div align="center">
+    <div class="container-fluid">
+        <div align="left" class="card col-7">
+            <h6 class="card-header text-white bg-primary fs-6 ">Детальний опис товару</h6>
+            <div class="card-body">
+                <div class="col input-group-sm">
+                    <label class="form-control text-white bg-info fs-6">Назва товару</label>
+                    <input class="form-control bg-light fw-bold text-success" readonly type="text"
+                           value="{{item.good_name}}">
+                </div>
+                <div class="row">
+                    <div class="col-8 input-group-sm">
+                        <label class="form-control text-white bg-info fs-6 mt-1 ">Детальні характеристики товару</label>
+                        <textarea class="form-control bg-light fw-bold text-success" readonly rows="5">{{item.good_opys }}</textarea>
+                    </div>
+                    <div class="col-4">
+                        <label class="form-control text-white bg-info fs-6 mt-1">Фото товару</label>
+                        {% if item.good_image %}
+                        <a href="{{item.good_image.url}}" target="_blank">
+                            <div class="img-container" style="width:125px; height: 115px;">
+                                <img alt="Image" class="img-fluid" src="{{ item.good_image.url }}">
+                            </div>
+                        </a>
+                        {% else %}
+                        <img alt="Image" class="img-container img-fluid" src="/static/no-image.jpg">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div align="center" class="col-4 input-group-sm">
+                        <label class="form-control text-white bg-info fs-6">Вартість</label>
+                        <input class="form-control text-danger bg-light text-center fw-bold" readonly
+                               type="text" value="{{ item.good_price|intcomma }}">
+                    </div>
+                    <div align="center" class="col input-group-sm">
+                        <label class="form-control text-white bg-info fs-6">Категорія товару</label>
+                        <input class="form-control text-primary bg-light text-center fw-bold" readonly
+                               type="text" value="{{item.good_kat}}">
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col input-group">
+                        <span class="input-group-text text-white bg-info fs-6 ">Посилання</span>
+                        <input class="form-control bg-light fw-bold text-success" readonly
+                               type="text" value="{{ item.good_link}}">
+                    </div>
+                </div>
+                <div align="right">
+                    <a class="btn btn-sm btn-outline-primary mt-2" href="{{last_page}}">Назад до переліку товарів</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

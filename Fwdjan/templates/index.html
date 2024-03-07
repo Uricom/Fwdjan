@@ -1,0 +1,57 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Головна сторінка сайту</h1>
+        <p class="lead text-muted">Звідси має здійснюватись перехід на інші реалізовані сайти по конкретних задачах
+            (напрямках).</p>
+        <hr>
+        <button class="btn btn-primary my-2 me-3" data-bs-toggle="popover" title="Просто кнопка, яка нічого не виконує!"
+                type="button">
+            Main call to action
+        </button>
+        <a class="btn btn-secondary my-2" data-bs-toggle="popover" href="#"
+           title="Ще одна кнопка, яка нічого не виконує!"
+        >Secondary action</a>
+        <hr>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm card text-center">
+                <h5 class="card-header text-white bg-success">Аплікація SHOP</h5>
+                <div class="card-body align-items-center">
+                    <p class="card-text">Це реалізація аплікації shop - стара версія (урок № 7),
+                        без викориситання засобів Bootstrap.</p>
+                    <hr>
+                    <a class="btn  btn-sm btn-outline-success" href="#">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm card text-center">
+                <h5 class="card-header text-white bg-primary">Аплікація SHOP(нова версія)</h5>
+                <div class="card-body align-items-center">
+                    <p class="card-text">Це реалізація аплікації shop - нова версія (уроки № 12-16),
+                        із викориситанням засобів Bootstrap.
+                    </p>
+                    <hr>
+                    <a class="btn  btn-sm btn-primary active" href="{% url 'new' 1 %}">Перейти</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm card text-center">
+                <h5 class="card-header text-white bg-warning">Аплікація PACIENT</h5>
+                <div class="card-body align-items-center">
+                    <p class="card-text">Це аплікація pacient, яка практично не реалізована попередній макет
+                        задачі описаний в уроці № 6.</p>
+                    <hr>
+                    <a class="btn  btn-sm btn-outline-warning" href="#">Перейти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}

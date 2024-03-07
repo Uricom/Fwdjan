@@ -1,0 +1,12 @@
+{% if messages %}
+{% for message in messages %}
+<div align="center" class="row input-group-sm">
+    {% if message.tags == 'error' %}
+    <label class="form-control text-white bg-danger ">{{ message }}</label>
+    {% else%}
+    <label class="form-control text-white bg-success ">{{ message }}</label>
+    {% endif %}
+</div>
+{% endfor %}
+
+{% endif %}

@@ -1,0 +1,33 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+
+{% include 'shop/shop_naw_bar.html' %}
+
+<form action="" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+
+    <div align="center">
+        <div class="container-fluid mt-5">
+            <div class="card col-3">
+                <h5 class="card-header text-white bg-primary">Авторизація користувача</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group input-group-sm">
+                            <label class="form-label text-primary ms-3">Логін:</label>
+                            {{form.username}}
+                            <br>
+
+                            <label class="form-label text-primary mt-2">Пароль:</label>
+                            {{form.password}}
+
+                        </div>
+
+                    </div>
+                </div>
+                <input class="btn btn-outline-danger" type="submit" value="Авторизуватись">
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

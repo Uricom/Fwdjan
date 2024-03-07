@@ -1,0 +1,59 @@
+{% load humanize %}
+<div class="row g-2 gx-2">
+    {% for item in goods %}
+    <div class="col-3 d-flex">
+        <div class="card" style="width: 18rem;">
+            <div class="img-container">
+                {% if item.good_image %}
+                <img alt="Image" class="img-fluid" src="{{ item.good_image.url }}">
+                {% else %}
+                <img alt="Image" class="img-fluid img-proportional" src="/static/no-image.jpg">
+                {% endif %}
+            </div>
+            <div align="center" class="card-body flex-column align-items-center">
+                <div class="row" style="height: 70px;">
+                    <a class="card-text text-primary fs-6" href="{{ item.get_absolute_url }}" style="line-height:1.1;">
+                        {{item.good_name}}</a>
+                </div>
+                <div class="horizontal-line mb-1 mt-1"></div>
+                <a class="card-text text-success fw-bold" style="text-decoration: none;">Ціна: </a>
+                <a class="card-text text-danger fs-6 fw-bold" style="text-decoration: none;">
+                    {{item.good_price|intcomma}}грн</a>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a class="card-text " href="{{ item.good_link }}" target="_blank">
+                    <i class="bi bi-link"></i></a>
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-outline-primary" href="{{ item.get_absolute_url }}"
+                       role="button">
+                        <i class="bi bi-view-list"></i> переглянути
+                    </a>
+                    {% if request.user.is_authenticated %}
+                    <button aria-expanded="false"
+                            class="btn btn-sm btn-info dropdown-toggle dropdown-toggle-split"
+                            data-bs-toggle="dropdown" type="button">
+                        {% else %}
+                        <button aria-expanded="false"
+                                class="btn btn-sm btn-info dropdown-toggle dropdown-toggle-split disabled"
+                                data-bs-toggle="dropdown" type="button">
+                            {% endif %}
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li><a class="dropdown-item " href="{{ item.get_absolute_url_1 }}">Редагувати
+                                товар</a></li>
+                            <li><a class="dropdown-item" href="{% url 'create' %}">Додати новий</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" data-bs-target="#leModal" data-bs-toggle="modal" href="#"
+                                   onclick="setItemId('{{ item.id }}')"> Видалити товар</a>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% include 'shop/alert_del.html' %}

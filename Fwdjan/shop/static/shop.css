@@ -1,0 +1,43 @@
+.price{
+    width:150px;
+ }
+
+.menu_sell{
+    width:217px;
+    text-align:center;
+}
+
+.nowrap{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 490px;
+}
+.img-proportional {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+.img-container {
+    width: 135px;
+    height: 135px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.img-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    width: auto;
+    height: auto;
+}
+ .horizontal-line {
+    height: 1px;
+    background-color: #000;
+    width: 100%;
+}
