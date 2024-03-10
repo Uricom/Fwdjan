@@ -3,6 +3,7 @@
     {% for item in goods %}
     <div class="col-3 d-flex">
         <div class="card" style="width: 18rem;">
+            <a href="{{ item.get_absolute_url }}">
             <div class="img-container">
                 {% if item.good_image %}
                 <img alt="Image" class="img-fluid" src="{{ item.good_image.url }}">
@@ -10,6 +11,7 @@
                 <img alt="Image" class="img-fluid img-proportional" src="/static/no-image.jpg">
                 {% endif %}
             </div>
+            </a>
             <div align="center" class="card-body flex-column align-items-center">
                 <div class="row" style="height: 70px;">
                     <a class="card-text text-primary fs-6" href="{{ item.get_absolute_url }}" style="line-height:1.1;">
@@ -40,7 +42,7 @@
                             <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu ">
-                            <li><a class="dropdown-item " href="{{ item.get_absolute_url_1 }}">Редагувати
+                            <li><a class="dropdown-item " href="{% url 'update' item.pk %}">Редагувати
                                 товар</a></li>
                             <li><a class="dropdown-item" href="{% url 'create' %}">Додати новий</a></li>
                             <li>

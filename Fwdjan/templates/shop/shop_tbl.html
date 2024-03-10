@@ -36,7 +36,7 @@
                                 <span class="visually-hidden">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu ">
-                                <li><a class="dropdown-item" href="{{ item.get_absolute_url_1 }}">Редагувати
+                                <li><a class="dropdown-item" href="{% url 'update' item.pk %}">Редагувати
                                     товар</a></li>
                                 <li><a class="dropdown-item" href="{% url 'create' %}">Додати новий</a></li>
                                 <li>

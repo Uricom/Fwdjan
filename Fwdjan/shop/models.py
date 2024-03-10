@@ -3,7 +3,8 @@ from django.urls import reverse
 
 kat_name = None
 
-
+# kategory_name - забезпечує формування довідника категорій товарів у список. Список формується
+# один раз при першому виклику, щоб надалі не робити повторних запитів до БД.
 def kategory_name():
     global kat_name
     if (not kat_name):
@@ -14,7 +15,10 @@ def kategory_name():
 def upload_location(instance, filename):
     return f"{instance.id}, {filename}"
 
-
+# модель зберігання даних про категорії. поле kat_kod  використовується для звязування з моделлю товарів.
+# Спеціально присвоєний тип CharField цього поля з можливістю в майбутньому зберігати у цій таблиці
+# дані про підкатегорії, підпідкатегорії і т.д.  Поле kat_sort використовується для визначення порядку
+# відображення категорій.
 class Shop_kategory(models.Model):
     kat_kod = models.CharField(max_length=5, unique=True, verbose_name="Код категорії")
     kat_name = models.CharField(max_length=100, verbose_name="Назва категорії")
@@ -23,7 +27,8 @@ class Shop_kategory(models.Model):
     def __str__(self):
         return self.kat_name
 
-
+# модель зберігання даних про товари. Це основна база яка містить мінімальні дані щодо товарів, які відображаються
+# (реалізовуються) у магазині. Поле good_kat використовується для звязування з моделлю назв категорій (підкатегорій)
 class Shop_goods(models.Model):
     # good_kat = models.CharField(max_length=5, choices=kategory_name(), default='', verbose_name="Категорія товару")
     good_kat = models.ForeignKey(Shop_kategory, on_delete=models.PROTECT, to_field='kat_kod', default='1',
@@ -41,8 +46,5 @@ class Shop_goods(models.Model):
     def __str__(self):
         return self.good_name
 
-    def get_absolute_url(self, tpp=1):
+    def get_absolute_url(self):
         return reverse('detail', kwargs={'good_id': self.pk})
-
-    def get_absolute_url_1(self):
-        return reverse('update', kwargs={'good_id': self.pk})

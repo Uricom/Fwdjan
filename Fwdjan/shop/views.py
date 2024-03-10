@@ -11,13 +11,11 @@ from .models import Shop_goods, kategory_name
 goods_query_gl = None
 last_page = None
 
-
-def shop_start(request):
-    context = {'nam_kat': kategory_name()}
-    return render(request, 'shop/index_shop.html', context)
+# shop_start_new- основна функція проекту, забезпечує вивід даних по категоріях, пошук та сортування даних,
+# їх вивід у різних представленнях, пагінацію сторінок
 
 
-def shop_start_new(request, kat_id):
+def shop_start_new (request, kat_id):
     global goods_query_gl
     step_page = ""
     query = request.GET.get('q_1')
@@ -70,14 +68,14 @@ def shop_start_new(request, kat_id):
     goods_query_gl = goods_query
     return render(request, 'shop/shop_new.html', context)
 
-
+#show_detail -забезпечує деталізований вивід інформації про товар
 def show_detail(request, good_id):
     last_page = request.META['HTTP_REFERER']
     good = get_object_or_404(Shop_goods, id=good_id)
     context = {'title': 'Деталізація товару', 'item': good, 'last_page': last_page}
     return render(request, 'shop/index_detail.html', context)
 
-
+#shop_create -забезпечує внесення інформації про новий товар
 def shop_create(request):
     global last_page
     last_page = request.META['HTTP_REFERER'] if (not last_page) else last_page
@@ -98,7 +96,7 @@ def shop_create(request):
                        'head': 'Внесення даних нового товару'}
             return render(request, 'shop/index_create.html', context)
 
-
+#shop_update -забезпечує редагування раніше внесеної інформації про товар
 def shop_update(request, good_id=None):
     global last_page
     last_page = request.META['HTTP_REFERER'] if (not last_page) else last_page
@@ -121,7 +119,7 @@ def shop_update(request, good_id=None):
     # else:
     #    return redirect(last_page)
 
-
+#shop_delete -забезпечує вилучення інформації про товар
 def shop_delete(request, good_id):
     last_page = request.META['HTTP_REFERER']
     lefty = sign_in(request, 'user_3', 3)
@@ -131,7 +129,8 @@ def shop_delete(request, good_id):
         messages.success(request, lefty[1])
     return redirect(last_page)
 
-
+#sign_in - універсальна функція, яка забезпечує вивід інформаційних повідомлень
+#про виконання певних операції та перевірку прав користувача в системі
 def sign_in(request, usser, tp):
     match tp:
         case 1:
@@ -149,7 +148,7 @@ def sign_in(request, usser, tp):
         rez = False
     return rez, mess
 
-
+#usr_login -забезпечує авторизацію користувача в системі
 def usr_login(request):
     global last_page
     if request.method == "POST":
@@ -166,13 +165,13 @@ def usr_login(request):
         form = AuthenticationForm()
     return render(request, 'shop/usr_login.html', {"form": form})
 
-
+#usr_login -забезпечує вихід користувача з системи
 def usr_logout(request):
     global last_page
     last_page = request.META['HTTP_REFERER']
     logout(request)
     return redirect(last_page)
 
-
+#home_page -забезпечує переадресацію на головну сторінку
 def home_page(request):
     return render(request, 'index.html')
