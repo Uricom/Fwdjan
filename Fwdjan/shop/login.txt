@@ -1,0 +1,4 @@
+adminn - 1277 -адміністратор
+user_1 - accaunt_1 - staff статус дозвіл - create
+user_2 - accaunt_2 - staff статус дозвіл - edit
+user_3 - accaunt_3 - staff статус дозвіл - delete
